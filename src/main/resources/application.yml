@@ -1,0 +1,120 @@
+server:
+  port: 8901 #端口
+  address: 0.0.0.0
+#log
+logging:
+  config: classpath:logback.xml
+
+#============== prod kafka ===================
+kafka.consumer.zookeeper.connect: 10.50.141.194:2181,10.50.141.229:2181,10.50.141.232:2181
+kafka.consumer.servers: 10.50.141.194:6667,10.50.141.229:6667,10.50.141.232:6667
+kafka.consumer.enable.auto.commit: false
+kafka.consumer.session.timeout: 6000
+kafka.consumer.auto.commit.interval: 100
+kafka.consumer.auto.offset.reset: latest
+kafka.consumer.topic: test
+kafka.consumer.group.id: test
+kafka.consumer.concurrency: 10
+
+kafka.producer.servers: 10.50.141.194:6667,10.50.141.229:6667,10.50.141.232:6667
+kafka.producer.retries: 0
+kafka.producer.batch.size: 4096
+kafka.producer.linger: 1
+kafka.producer.buffer.memory: 40960
+
+topic:
+  traffic: 
+    model_task: stab_ticket_task
+    task_return: stab_ticket_return
+   
+stability: 
+  queryAll: http://10.50.141.246:9300/law/control/mangement/getAllTicketTask
+  
+#============== dev kafka ===================
+#kafka.consumer.zookeeper.connect: 192.168.10.54:2181,192.168.10.55:2181,192.168.10.56:2181
+#kafka.consumer.servers: 192.168.10.54:6667,192.168.10.55:6667,192.168.10.56:6667
+#kafka.consumer.enable.auto.commit: false
+#kafka.consumer.session.timeout: 6000
+#kafka.consumer.auto.commit.interval: 100
+#kafka.consumer.auto.offset.reset: latest
+#kafka.consumer.topic: test
+#kafka.consumer.group.id: test
+#kafka.consumer.concurrency: 10
+#
+#kafka.producer.servers: 192.168.10.54:6667,192.168.10.55:6667,192.168.10.56:6667
+#kafka.producer.retries: 0
+#kafka.producer.batch.size: 4096
+#kafka.producer.linger: 1
+#kafka.producer.buffer.memory: 40960
+#
+#topic:
+#  traffic:
+#    model_task: stab_ticket_task_dev
+#    task_return: stab_ticket_return_dev
+    
+#topic:
+#  traffic:
+#    model_task: stab_ticket_task_test
+#    task_return: stab_ticket_return_test
+
+# ES TEST
+eagle:
+  elasticsearch:
+    #ip
+    ip: 192.168.10.57
+    #端口
+    port: 9300
+    #cat 端口
+    cat-port: 9200
+    #集群名称
+    cluster-name: es_cluster
+    #连接数
+    pool-size: 20
+
+    #Es 操作配置
+    #缓冲池容量
+    max-bulk-count: 500
+    #最大提交间隔（秒）
+    max-commit-interval: 120
+# ES FS
+#eagle:
+#  elasticsearch:
+#    #ip
+#    ip: 10.50.141.229
+#    #端口
+#    port: 9300
+#    #cat 端口
+#    cat-port: 9200
+#    #集群名称
+#    cluster-name: es_cluster
+#    #连接数
+#    pool-size: 20
+#
+#
+#    #Es 操作配置
+#    #缓冲池容量
+#    max-bulk-count: 500
+#    #最大提交间隔（秒）
+#    max-commit-interval: 120
+
+#hive dev 
+hive:
+  url: jdbc:hive2://192.168.10.51:10000/default
+  driver-class-name: org.apache.hive.jdbc.HiveDriver
+  type: com.alibaba.druid.pool.DruidDataSource
+  user: hive
+  password: 
+  initialSize: 1
+  minIdle: 3
+  maxActive: 20
+  maxWait: 6000
+  timeBetweenEvictionRunsMillis: 60000
+  minEvictableIdleTimeMillis: 30000
+  validationQuery: select 1
+  testWhileIdle: true
+  testOnBorrow: false
+  testOnReturn: false
+  poolPreparedStatements: true
+  maxPoolPreparedStatementPerConnectionSize: 20
+  connectionErrorRetryAttempts: 0
+  breakAfterAcquireFailure: true
