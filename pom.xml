@@ -24,7 +24,7 @@
 		<java.version>1.8</java.version>
 		<hive.version>1.2.1</hive.version>
         <hadoop.version>2.6.0</hadoop.version>
-        <transport.version>6.2.3</transport.version>
+        <transport.version>7.11.2</transport.version>
 	</properties>
 
 	<dependencies>
